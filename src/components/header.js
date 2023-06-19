@@ -43,6 +43,14 @@ const headerAppender = (selector) => {
   // We are taking care of passing in the correct selector on line 16,
   // so all that you need to do is pass it into the querySelector method
   // for the tests to work!
+  const element = document.querySelector(selector);
+  if (!element) {
+    console.error(`Element with selector '${selector}' not found.`);
+    return;
+  }
+
+  const header = Header("Sprint Challenge 5", "June 18 2023", "temp");
+  element.appendChild(header);
 };
 
 export { Header, headerAppender };
