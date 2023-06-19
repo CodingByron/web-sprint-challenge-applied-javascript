@@ -59,6 +59,36 @@ const cardAppender = (selector) => {
   // Create a card from each and every article object in the response, using the Card component.
   // Append each card to the element in the DOM that matches the selector passed to the function.
   //
+  const element = document.querySelector(selector);
+  if (!element) {
+    console.error(`Element with selector '${selector}' not found.`);
+    return;
+  }
+
+  fetch("http://localhost:5001/api/articles")
+    .then((response) => response.json())
+    .then((data) => {
+      const articles = extractArticles(data);
+      articles.forEach((article) => {
+        const card = Card(article);
+        element.appendChild(card);
+      });
+    })
+    .catch((error) => {
+      console.error("Error fetching articles:", error);
+    });
+};
+
+const extractArticles = (data) => {
+  const articles = [];
+  for (const key in data) {
+    if (Array.isArray(data[key])) {
+      articles.push(...data[key]);
+    } else if (typeof data[key] === "object") {
+      articles.push(...extractArticles(data[key]));
+    }
+  }
+  return articles;
 };
 
 export { Card, cardAppender };
