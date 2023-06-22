@@ -57,8 +57,10 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 
 Demonstrate your understanding of this sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question.
 
-1. What is the DOM?
+1. What is the DOM? 
 2. What is an event?
 3. What is an event listener?
 4. Why would we convert a NodeList into an Array?
 5. What is a component?
+
+"Hello from Linux"
